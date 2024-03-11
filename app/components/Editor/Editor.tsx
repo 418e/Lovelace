@@ -10,6 +10,7 @@ import {
 import { ActiveFile } from "@/app/interfaces";
 import { writeTextFile } from "@tauri-apps/api/fs";
 import { compile } from "./compiler";
+import { LanguageSupport } from "@/app/lib/builtin";
 
 export function Editor({ ActiveFile }: { ActiveFile: ActiveFile }) {
   const [highlighted, setHighlighted] = useState<
@@ -17,10 +18,7 @@ export function Editor({ ActiveFile }: { ActiveFile: ActiveFile }) {
   >([]);
   const [lineCount, setLineCount] = useState<number>(1);
   const [Input, setInput] = useState<string>("");
-  // html example
-  const symbols: string[] = ["<", ">", "=", "/"];
-  const string_lits: string[] = ["'", '"'];
-  //
+  const Language = LanguageSupport(ActiveFile.suffix || "txt");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -36,7 +34,14 @@ export function Editor({ ActiveFile }: { ActiveFile: ActiveFile }) {
 
   useEffect(() => {
     setInput(ActiveFile.content);
-    setHighlighted(compile(ActiveFile.content, symbols, string_lits));
+    setHighlighted(
+      compile(
+        ActiveFile.content,
+        Language.symbols,
+        Language.stringLits,
+        Language.keywords
+      )
+    );
   }, [ActiveFile]);
 
   const writeFile = async (input: string) => {
@@ -56,14 +61,21 @@ export function Editor({ ActiveFile }: { ActiveFile: ActiveFile }) {
             ref={textAreaRef}
             onChange={(e) => {
               setInput(e.target.value);
-              setHighlighted(compile(e.target.value, symbols, string_lits));
+              setHighlighted(
+                compile(
+                  e.target.value,
+                  Language.symbols,
+                  Language.stringLits,
+                  Language.keywords
+                )
+              );
             }}
             className="absolute top-0 left-0 w-full h-full overflow-hidden bg-transparent text-transparent caret-white resize-none select-none pl-6 focus:outline-none"
           />
           <div className="absolute top-0 left-0 w-full h-full overflow-auto pointer-events-none  pl-6">
             {highlighted.map((tokenObj, index) => (
               <span
-                key={index}
+                key={`${tokenObj.token}-${index}`}
                 className={`ada-${tokenObj.type} whitespace-pre-wrap`}
               >
                 {tokenObj.token}

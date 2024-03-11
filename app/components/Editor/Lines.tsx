@@ -8,7 +8,7 @@ const Lines: React.FC<LinesProps> = ({ lineCount }) => {
   return (
     <div className="lines-container">
       {lines.map((line) => (
-        <div key={line} className="line-number w-4 text-end">
+        <div key={`line-${line}`} className="line-number w-4 text-end">
           {line}
         </div>
       ))}

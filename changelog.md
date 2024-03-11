@@ -1,3 +1,9 @@
+### 0.3.0 March 11 2024
+
+- added actions on files
+- added bar for creating/opening files/folders
+- suffix specific syntax highlighting
+
 ### 0.2.1 March 11 2024
 
 - minor improvements and optimizations

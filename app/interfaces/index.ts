@@ -7,3 +7,9 @@ export interface ActiveFile {
   children?: FileEntry[];
   content: string;
 }
+
+export interface LanguageSupport {
+  symbols?: string[];
+  stringLits?: string[];
+  keywords?: string[];
+}
