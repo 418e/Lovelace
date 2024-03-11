@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/app//components/Sidebar";
+import Sidebar from "@/app/components/Sidebar";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -22,20 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className + " dark"}>
-        <div className="">
-          <ResizablePanelGroup
-            direction="horizontal"
-            className="flex flex-nowrap"
-          >
-            <Sidebar />
-            <ResizableHandle />
-            <ResizablePanel defaultSize={80}>
-              {children}
-            </ResizablePanel>
-          </ResizablePanelGroup>
-        </div>
-      </body>
+      <body className={font.className + " dark"}>{children}</body>
     </html>
   );
 }

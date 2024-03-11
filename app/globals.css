@@ -96,5 +96,6 @@ body {
 .sidebar {
   width: 100%;
   background-color: rgb(34, 34, 34);
+  overflow-y: auto;
   height: 100vh;
 }

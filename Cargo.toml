@@ -1,6 +1,6 @@
 [package]
-name = "lovelace"
-version = "0.1.0"
+name = "app"
+version = "0.2.0"
 description = "A Tauri App"
 authors = ["418e"]
 license = "MIT"

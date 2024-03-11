@@ -7,6 +7,8 @@ import {
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/app/components/ui/context-menu";
+import { ActiveFile } from "@/app/interfaces";
+import { writeTextFile } from "@tauri-apps/api/fs";
 
 function compile(
   input: string,
@@ -51,11 +53,12 @@ function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-export function Editor() {
+export function Editor({ ActiveFile }: { ActiveFile: ActiveFile }) {
   const [highlighted, setHighlighted] = useState<
     { token: string; type: string }[]
   >([]);
   const [lineCount, setLineCount] = useState<number>(1);
+  const [Input, setInput] = useState<string>("");
   const symbols = ["<", ">", "=", "/"];
   const string_lits = ["'", '"'];
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -66,6 +69,19 @@ export function Editor() {
       setLineCount(lines);
     }
   }, [highlighted]);
+
+  useEffect(() => {
+    writeFile(Input);
+  }, [Input]);
+
+  useEffect(() => {
+    setInput(ActiveFile.content);
+    setHighlighted(compile(ActiveFile.content, symbols, string_lits));
+  }, [ActiveFile]);
+
+  const writeFile = async (input: string) => {
+    await writeTextFile(ActiveFile.path, input || ActiveFile.content);
+  };
 
   return (
     <div className="editor-container">
@@ -79,10 +95,12 @@ export function Editor() {
         </ContextMenuContent>
         <ContextMenuTrigger className="dark">
           <textarea
+            value={Input}
             ref={textAreaRef}
-            onChange={(e) =>
-              setHighlighted(compile(e.target.value, symbols, string_lits))
-            }
+            onChange={(e) => {
+              setInput(e.target.value);
+              setHighlighted(compile(e.target.value, symbols, string_lits));
+            }}
             className="editor-textarea pl-6 focus:outline-none"
           />
           <div className="editor-highlighted pl-6">

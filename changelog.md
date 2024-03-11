@@ -1,3 +1,9 @@
+### 0.2.0 March 11 2024
+
+- added file reading
+- context menu on files
+- added file editing
+
 ### 0.1.0 March 11 2024
 
 - updated website favicon
