@@ -1,12 +1,6 @@
 "use client";
 import { useState } from "react";
-import Editor from "./components/Editor";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "./components/ui/resizable";
-import Sidebar from "./components/Sidebar";
+import { Editor, Sidebar, Resize } from "./components";
 import { ActiveFile } from "./interfaces";
 
 export default function Home() {
@@ -17,12 +11,20 @@ export default function Home() {
   });
 
   return (
-    <ResizablePanelGroup direction="horizontal" className="flex flex-nowrap">
-      <Sidebar setState={setActiveFile} />
-      <ResizableHandle />
-      <ResizablePanel defaultSize={80}>
-        <Editor ActiveFile={ActiveFile} />
-      </ResizablePanel>
-    </ResizablePanelGroup>
+    <Resize.ResizablePanelGroup
+      direction="horizontal"
+      className="flex flex-nowrap"
+    >
+      <Resize.ResizablePanel
+        defaultSize={15}
+        minSize={10}
+        maxSize={40}
+      ></Resize.ResizablePanel>
+      <Sidebar.default setState={setActiveFile} />
+      <Resize.ResizableHandle />
+      <Resize.ResizablePanel defaultSize={85}>
+        <Editor.default ActiveFile={ActiveFile} />
+      </Resize.ResizablePanel>
+    </Resize.ResizablePanelGroup>
   );
 }

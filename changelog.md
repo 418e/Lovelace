@@ -1,3 +1,7 @@
+### 0.2.1 March 11 2024
+
+- minor improvements and optimizations
+
 ### 0.2.0 March 11 2024
 
 - added file reading
