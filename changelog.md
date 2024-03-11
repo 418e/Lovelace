@@ -1,3 +1,8 @@
+### 0.3.5 March 12 2024
+
+- fixed multi-level nesting
+- updated sidebar
+
 ### 0.3.0 March 11 2024
 
 - added actions on files

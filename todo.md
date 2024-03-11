@@ -1,0 +1,25 @@
+# ToDo
+
+- file/folder renaming/copying
+- file icons
+- sidebar context menu
+- settings
+- save current project
+- file history (undo/redo)
+- loading screen (editor)
+- windows (open multiple editors)
+- editor splitting
+- terminal emulator
+- search (in project)
+- keyword suggestion
+- selected word highlighting
+- snippets
+- key-binds
+- navigation bar (/files, /search, /settings, /source-control, /profile, /keybinds, /themes, /extensions, /updates)
+- indentation highlighter
+- interaction API
+- integrated source control
+- user authentication
+- bottom bar for editor information (current line/col, word count, extension items, source control)
+- API for extensions
+- implement language server protocol

@@ -15,11 +15,11 @@ export default function Home() {
       direction="horizontal"
       className="flex flex-nowrap"
     >
-      <Resize.ResizablePanel defaultSize={15} minSize={10} maxSize={40}>
+      <Resize.ResizablePanel defaultSize={20} minSize={15} maxSize={40}>
         <Sidebar.default setState={setActiveFile} />
       </Resize.ResizablePanel>
       <Resize.ResizableHandle />
-      <Resize.ResizablePanel defaultSize={85}>
+      <Resize.ResizablePanel defaultSize={80}>
         <Editor.default ActiveFile={ActiveFile} />
       </Resize.ResizablePanel>
     </Resize.ResizablePanelGroup>

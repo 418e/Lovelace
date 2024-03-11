@@ -13,3 +13,9 @@ export interface LanguageSupport {
   stringLits?: string[];
   keywords?: string[];
 }
+
+export interface FileComponentProps {
+  file: FileEntry;
+  setState: (value: ActiveFile) => void;
+  depth: number;
+}
