@@ -1,6 +1,6 @@
 import { BaseDirectory, createDir } from "@tauri-apps/api/fs";
 import { TiDocumentAdd, TiFolderAdd, TiFolderOpen } from "react-icons/ti";
-import { useOpenFolder } from "../ui/useOpenFolder";
+import { useOpenFolder } from "../../hooks/useOpenFolder";
 
 export const SidebarNav = () => {
   const openFolder = useOpenFolder();

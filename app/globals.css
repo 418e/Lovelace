@@ -25,3 +25,7 @@
     --ring: 240 4.9% 83.9%;
   }
 }
+
+body {
+  overflow: hidden;
+}

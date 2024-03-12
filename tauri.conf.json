@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "lovelace",
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "tauri": {
     "allowlist": {
@@ -60,7 +60,7 @@
         "resizable": true,
         "title": "Lovelace",
         "width": 800,
-        "minWidth": 300,
+        "minWidth": 400,
         "theme": "Dark",
         "label": "Lovelace",
         "fileDropEnabled": true,

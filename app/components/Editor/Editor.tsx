@@ -45,10 +45,14 @@ export const Editor: React.FC = () => {
       </Context.Content>
       <Context.Trigger className="dark">
         <MonacoEditor
-          className="w-full h-full"
+          className="w-full h-full pt-2"
           language={SuffixToLang(ActiveFile.suffix || "txt")}
           theme="vs-dark"
           value={Input}
+          options={{
+            language: SuffixToLang(ActiveFile.suffix || "txt"),
+            theme: "vs-dark",
+          }}
           onChange={setInput}
         />
       </Context.Trigger>

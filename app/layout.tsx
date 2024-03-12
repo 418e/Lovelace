@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
+"use client";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { Menu } from "./components";
 const font = Roboto({ weight: "400", subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Lovelace",
-  description: "Lovelace editor",
-  icons: "icon.png",
-};
 
 export default function RootLayout({
   children,
@@ -17,6 +12,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className + " bg-black text-white"}>
+        <Menu />
         {children}
       </body>
     </html>

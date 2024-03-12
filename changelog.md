@@ -1,6 +1,13 @@
+### 0.6.0 March 12 2024
+
+- added Menu bar
+- sorted project files
+- updated file icons
+- fixed context bugs
+
 ### 0.5.0 March 12 2024
 
-- files now can be renamed
+- files can now be renamed
 - better state managment
 - fixed folder opening bugs
 - fixed perfonmance issues

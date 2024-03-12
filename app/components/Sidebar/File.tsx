@@ -1,5 +1,5 @@
 import { FileComponentProps } from "@/app/interfaces";
-import { Collapse, Context } from "..";
+import { Collapse } from "..";
 import { TiFolder } from "react-icons/ti";
 import { LanguageLogo, Rename } from "./utils";
 import { useState } from "react";
@@ -16,13 +16,14 @@ export const FileComponent: React.FC<FileComponentProps> = ({
   const removeOpenFile = useOpenStore((state) => state.removeOpenFile);
   const addOpenFile = useOpenStore((state) => state.addOpenFile);
   const Activate = useActivate(file);
+  
   if (!file.children) {
     const fileSuffix = file.name?.split(".")[file.name?.split(".").length - 1];
     return (
-      <Context.Trigger
+      <div
         title={file.path}
         className={`bg-zinc-900 px-1 text-sm cursor-pointer hover:bg-black/70 transition-all flex flex-nowrap items-center gap-x-1 py-1 w-full`}
-        style={{ paddingLeft: `${2 * depth + 1}rem` }}
+        style={{ paddingLeft: `${8 * depth + 1}px` }}
         onClick={() => Activate()}
         onDoubleClick={() => setIsRenaming(true)}
       >
@@ -59,21 +60,27 @@ export const FileComponent: React.FC<FileComponentProps> = ({
         ) : (
           file.name
         )}
-      </Context.Trigger>
+      </div>
     );
   }
+
+  const childFolders = file.children.filter((file) => file.children);
+  const childFiles = file.children.filter((file) => !file.children);
+  childFolders.sort((a, b) => a.name!.localeCompare(b.name!));
+  childFiles.sort((a, b) => a.name!.localeCompare(b.name!));
+  const sortedFiles = [...childFolders, ...childFiles];
 
   return (
     <Collapse.def key={file.name}>
       <Collapse.Trigger
         title={file.path}
         className={`bg-zinc-900 px-1 text-sm cursor-pointer hover:bg-black/70 transition-all flex flex-nowrap items-center gap-x-1 py-1 w-full`}
-        style={{ paddingLeft: `${1.2 * depth + 1}rem` }}
+        style={{ paddingLeft: `${8 * depth + 1}px` }}
       >
         <TiFolder /> {file.name}
       </Collapse.Trigger>
       <Collapse.Content>
-        {file.children.map((subfile, i) => (
+        {sortedFiles.map((subfile, i) => (
           <FileComponent
             key={`sub-${subfile.name}-${i}`}
             file={subfile}

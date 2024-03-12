@@ -2,7 +2,16 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-  tauri::Builder::default()
-    .run(tauri::generate_context!())
-    .expect("error while running tauri application");
+    tauri::Builder::default()
+        .on_menu_event(|event| match event.menu_item_id() {
+            "quit" => {
+                std::process::exit(0);
+            }
+            "close" => {
+                event.window().close().unwrap();
+            }
+            _ => {}
+        })
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }

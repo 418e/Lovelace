@@ -5,7 +5,7 @@ import { useOpenStore } from "./hooks/useOpenStore";
 
 export default function Home() {
   const setFiles = useOpenStore((state) => state.setOpenFiles);
-  
+
   useEffect(() => {
     let item = localStorage.getItem("item");
     if (item) {
