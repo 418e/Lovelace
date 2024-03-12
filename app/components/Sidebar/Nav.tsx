@@ -1,7 +1,9 @@
 import { BaseDirectory, createDir } from "@tauri-apps/api/fs";
 import { TiDocumentAdd, TiFolderAdd, TiFolderOpen } from "react-icons/ti";
+import { useOpenFolder } from "../ui/useOpenFolder";
 
-export const SidebarNav = ({ openFolder }: { openFolder: () => void }) => {
+export const SidebarNav = () => {
+  const openFolder = useOpenFolder();
   return (
     <div className="flex flex-nowrap justify-end gap-3 p-2">
       <TiDocumentAdd

@@ -1,14 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Editor, Sidebar, Resize } from "./components";
-import { ActiveFile } from "./interfaces";
+import { useOpenStore } from "./hooks/useOpenStore";
 
 export default function Home() {
-  const [ActiveFile, setActiveFile] = useState<ActiveFile>({
-    name: "untitled",
-    path: "",
-    content: "",
-  });
+  const setFiles = useOpenStore((state) => state.setOpenFiles);
+  
+  useEffect(() => {
+    let item = localStorage.getItem("item");
+    if (item) {
+      setFiles(JSON.parse(item));
+    }
+  }, []);
 
   return (
     <Resize.ResizablePanelGroup
@@ -16,11 +19,11 @@ export default function Home() {
       className="flex flex-nowrap"
     >
       <Resize.ResizablePanel defaultSize={20} minSize={15} maxSize={40}>
-        <Sidebar.default setState={setActiveFile} />
+        <Sidebar.default />
       </Resize.ResizablePanel>
       <Resize.ResizableHandle />
       <Resize.ResizablePanel defaultSize={80}>
-        <Editor.default ActiveFile={ActiveFile} />
+        <Editor.default />
       </Resize.ResizablePanel>
     </Resize.ResizablePanelGroup>
   );

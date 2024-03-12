@@ -1,7 +1,6 @@
 # ToDo
 
-- file/folder renaming/copying
-- sidebar context menu
+- file/folder copying
 - settings
 - save current project
 - file history (undo/redo)

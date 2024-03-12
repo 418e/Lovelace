@@ -1,3 +1,11 @@
+### 0.5.0 March 12 2024
+
+- files now can be renamed
+- better state managment
+- fixed folder opening bugs
+- fixed perfonmance issues
+- disabled sidebar context menu
+
 ### 0.4.0 March 12 2024
 
 - fixed fs (not opening certain files)

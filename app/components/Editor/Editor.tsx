@@ -1,14 +1,9 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { ActiveFile } from "@/app/interfaces";
+import { useEffect, useState } from "react";
 import { writeTextFile } from "@tauri-apps/api/fs";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/app/components/ui/context-menu";
+import { Context } from "..";
 import MonacoEditor from "react-monaco-editor";
+import { useActiveStore } from "@/app/hooks/useActiveStore";
 
 const SuffixToLang = (Suffix: string) => {
   if (Suffix === "html" || Suffix == "htm") {
@@ -27,11 +22,10 @@ const SuffixToLang = (Suffix: string) => {
   }
 };
 
-export const Editor: React.FC<{
-  ActiveFile: ActiveFile;
-}> = ({ ActiveFile }) => {
+export const Editor: React.FC = () => {
   const [Input, setInput] = useState<string>("");
-
+  const ActiveFile = useActiveStore((state) => state.activeFiles)[0];
+  console.log(ActiveFile);
   useEffect(() => {
     writeFile(Input);
   }, [Input]);
@@ -45,19 +39,19 @@ export const Editor: React.FC<{
   };
 
   return (
-    <ContextMenu>
-      <ContextMenuContent>
-        <ContextMenuItem>Soon</ContextMenuItem>
-      </ContextMenuContent>
-      <ContextMenuTrigger className="dark">
+    <Context.Menu>
+      <Context.Content>
+        <Context.Item>Soon</Context.Item>
+      </Context.Content>
+      <Context.Trigger className="dark">
         <MonacoEditor
           className="w-full h-full"
-          language={'javascript'}
+          language={SuffixToLang(ActiveFile.suffix || "txt")}
           theme="vs-dark"
           value={Input}
           onChange={setInput}
         />
-      </ContextMenuTrigger>
-    </ContextMenu>
+      </Context.Trigger>
+    </Context.Menu>
   );
 };
