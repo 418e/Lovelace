@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Editor, Sidebar, Resize } from "./components";
 import { ActiveFile } from "./interfaces";
 

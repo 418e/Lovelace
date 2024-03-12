@@ -1,7 +1,6 @@
 # ToDo
 
 - file/folder renaming/copying
-- file icons
 - sidebar context menu
 - settings
 - save current project

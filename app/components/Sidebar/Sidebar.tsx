@@ -20,6 +20,7 @@ export function Sidebar({
       const folderPath = await open({
         directory: true,
         multiple: false,
+        recursive: true,
       });
 
       if (folderPath) {
@@ -27,7 +28,6 @@ export function Sidebar({
           recursive: true,
         });
         setFiles(fileList);
-        console.log(fileList);
       }
     } catch (error) {
       console.error("Error opening folder:", error);

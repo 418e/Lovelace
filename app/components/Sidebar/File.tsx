@@ -1,7 +1,7 @@
 import { FileComponentProps } from "@/app/interfaces";
 import { Collapse, Context } from "..";
 import { TiDocument, TiFolder } from "react-icons/ti";
-import { Activate } from "./utils";
+import { Activate, LanguageLogo } from "./utils";
 
 export const FileComponent: React.FC<FileComponentProps> = ({
   file,
@@ -9,14 +9,16 @@ export const FileComponent: React.FC<FileComponentProps> = ({
   setState,
 }) => {
   if (!file.children) {
+    const fileSuffix = file.name?.split(".")[file.name?.split(".").length - 1];
     return (
       <Context.ContextMenuTrigger
         title={file.path}
-        className={`bg-zinc-900 px-1 text-sm cursor-pointer hover:bg-black/70 transition-all flex flex-nowrap items-center gap-x-1 py-[2px] w-full`}
+        className={`bg-zinc-900 px-1 text-sm cursor-pointer hover:bg-black/70 transition-all flex flex-nowrap items-center gap-x-1 py-1 w-full`}
         style={{ paddingLeft: `${2 * depth + 1}rem` }}
         onClick={() => Activate(file, setState)}
       >
-        <TiDocument /> {file.name}
+        <LanguageLogo suffix={fileSuffix || "text"} />
+        {file.name}
       </Context.ContextMenuTrigger>
     );
   }
@@ -25,7 +27,7 @@ export const FileComponent: React.FC<FileComponentProps> = ({
     <Collapse.Collapsible key={file.name}>
       <Collapse.CollapsibleTrigger
         title={file.path}
-        className={`bg-zinc-900 px-1 text-sm cursor-pointer hover:bg-black/70 transition-all flex flex-nowrap items-center gap-x-1 py-[2px] w-full`}
+        className={`bg-zinc-900 px-1 text-sm cursor-pointer hover:bg-black/70 transition-all flex flex-nowrap items-center gap-x-1 py-1 w-full`}
         style={{ paddingLeft: `${1.2 * depth + 1}rem` }}
       >
         <TiFolder /> {file.name}

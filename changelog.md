@@ -1,3 +1,9 @@
+### 0.4.0 March 12 2024
+
+- fixed fs (not opening certain files)
+- switched to monaco editor
+- added file icons (experimental)
+
 ### 0.3.5 March 12 2024
 
 - fixed multi-level nesting
