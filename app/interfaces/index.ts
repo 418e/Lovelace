@@ -14,11 +14,8 @@ export interface FileComponentProps {
 }
 
 export interface ActiveStore {
-  activeFiles: ActiveFile[];
-  resetActiveFiles: () => void;
-  setActiveFiles: (file: ActiveFile) => void;
-  addActiveFile: (file: ActiveFile) => void;
-  removeActiveFile: (file: ActiveFile) => void;
+  activeFile: ActiveFile;
+  setActiveFile: (file: ActiveFile) => void;
 }
 
 export interface OpenStore {
@@ -27,4 +24,9 @@ export interface OpenStore {
   setOpenFiles: (files: FileEntry[]) => void;
   addOpenFile: (file: FileEntry) => void;
   removeOpenFile: (file: FileEntry) => void;
+}
+
+export interface FolderPathStore {
+  FolderPath: string;
+  setFolderPath: (path: string) => void;
 }

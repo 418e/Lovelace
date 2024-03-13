@@ -1,3 +1,10 @@
+### 0.7.0 March 13 2024
+
+- added file/folder creating
+- added file removing
+- added fs synchronization
+- another re-organization
+
 ### 0.6.0 March 12 2024
 
 - added Menu bar

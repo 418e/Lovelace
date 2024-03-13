@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { OpenStore } from "../interfaces";
+import { OpenStore } from "../../interfaces";
 import { FileEntry } from "@tauri-apps/api/fs";
 
 export const useOpenStore = create<OpenStore>((set) => ({

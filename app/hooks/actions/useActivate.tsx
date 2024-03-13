@@ -1,8 +1,8 @@
 import { FileEntry, readTextFile } from "@tauri-apps/api/fs";
-import { useActiveStore } from "./useActiveStore";
+import { useActiveStore } from "../stores/useActiveStore";
 
 export const useActivate = (file: FileEntry) => {
-  const setActiveFile = useActiveStore((state) => state.setActiveFiles);
+  const setActiveFile = useActiveStore((state) => state.setActiveFile);
 
   const activate = async () => {
     const splitted: string[] | undefined = file.name?.split(".");

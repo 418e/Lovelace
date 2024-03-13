@@ -1,18 +1,7 @@
 "use client";
-import { useEffect } from "react";
 import { Editor, Sidebar, Resize } from "./components";
-import { useOpenStore } from "./hooks/useOpenStore";
 
-export default function Home() {
-  const setFiles = useOpenStore((state) => state.setOpenFiles);
-
-  useEffect(() => {
-    let item = localStorage.getItem("item");
-    if (item) {
-      setFiles(JSON.parse(item));
-    }
-  }, []);
-
+export default function Home(): React.ReactNode {
   return (
     <Resize.ResizablePanelGroup
       direction="horizontal"

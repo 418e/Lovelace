@@ -3,29 +3,12 @@ import { useEffect, useState } from "react";
 import { writeTextFile } from "@tauri-apps/api/fs";
 import { Context } from "..";
 import MonacoEditor from "react-monaco-editor";
-import { useActiveStore } from "@/app/hooks/useActiveStore";
+import { useActiveStore } from "@/app/hooks/stores/useActiveStore";
 
-const SuffixToLang = (Suffix: string) => {
-  if (Suffix === "html" || Suffix == "htm") {
-  }
-  switch (Suffix) {
-    case "md":
-      return "markdown";
-    case "js":
-      return "javascript";
-    case "ts":
-      return "typescript";
-    case "rs":
-      return "rust";
-    default:
-      return Suffix;
-  }
-};
-
-export const Editor: React.FC = () => {
+const Editor: React.FC = () => {
   const [Input, setInput] = useState<string>("");
-  const ActiveFile = useActiveStore((state) => state.activeFiles)[0];
-  console.log(ActiveFile);
+  const ActiveFile = useActiveStore((state) => state.activeFile);
+
   useEffect(() => {
     writeFile(Input);
   }, [Input]);
@@ -46,16 +29,14 @@ export const Editor: React.FC = () => {
       <Context.Trigger className="dark">
         <MonacoEditor
           className="w-full h-full pt-2"
-          language={SuffixToLang(ActiveFile.suffix || "txt")}
           theme="vs-dark"
           value={Input}
-          options={{
-            language: SuffixToLang(ActiveFile.suffix || "txt"),
-            theme: "vs-dark",
-          }}
+          editorDidMount={(e) => e.focus()}
           onChange={setInput}
         />
       </Context.Trigger>
     </Context.Menu>
   );
 };
+
+export default Editor;

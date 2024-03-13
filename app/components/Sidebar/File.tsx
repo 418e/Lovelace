@@ -1,11 +1,12 @@
 import { FileComponentProps } from "@/app/interfaces";
 import { Collapse } from "..";
 import { TiFolder } from "react-icons/ti";
-import { LanguageLogo, Rename } from "./utils";
 import { useState } from "react";
-import { useOpenStore } from "@/app/hooks/useOpenStore";
+import { useOpenStore } from "@/app/hooks/stores/useOpenStore";
 import { FileEntry } from "@tauri-apps/api/fs";
-import { useActivate } from "@/app/hooks/useActivate";
+import { useActivate } from "@/app/hooks/actions/useActivate";
+import { useRename } from "@/app/hooks/actions/useRename";
+import { useFsLogo } from "@/app/hooks/actions/useFsLogo";
 
 export const FileComponent: React.FC<FileComponentProps> = ({
   file,
@@ -16,7 +17,8 @@ export const FileComponent: React.FC<FileComponentProps> = ({
   const removeOpenFile = useOpenStore((state) => state.removeOpenFile);
   const addOpenFile = useOpenStore((state) => state.addOpenFile);
   const Activate = useActivate(file);
-  
+  const Rename = useRename();
+  const Logo = useFsLogo();
   if (!file.children) {
     const fileSuffix = file.name?.split(".")[file.name?.split(".").length - 1];
     return (
@@ -27,7 +29,7 @@ export const FileComponent: React.FC<FileComponentProps> = ({
         onClick={() => Activate()}
         onDoubleClick={() => setIsRenaming(true)}
       >
-        <LanguageLogo suffix={fileSuffix || "text"} />
+        <Logo suffix={fileSuffix || "text"} />
         {isRenaming ? (
           <input
             className="w-full bg-transparent text-white border-zinc-400"

@@ -1,6 +1,6 @@
 import { BaseDirectory, createDir } from "@tauri-apps/api/fs";
 import { TiDocumentAdd, TiFolderAdd, TiFolderOpen } from "react-icons/ti";
-import { useOpenFolder } from "../../hooks/useOpenFolder";
+import { useOpenFolder } from "../../hooks/actions/useOpenFolder";
 
 export const SidebarNav = () => {
   const openFolder = useOpenFolder();
@@ -20,7 +20,7 @@ export const SidebarNav = () => {
       <TiFolderOpen
         size={20}
         className="text-zinc-200 hover:text-zinc-300 cursor-pointer transition-all"
-        onClick={openFolder}
+        onClick={() => openFolder()}
       />
     </div>
   );

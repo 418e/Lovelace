@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { SidebarNav } from "./Nav";
 import { FileComponent } from "./File";
-import { useOpenStore } from "@/app/hooks/useOpenStore";
+import { useOpenStore } from "@/app/hooks/stores/useOpenStore";
 
-export function Sidebar() {
+export default function Sidebar() {
   const files = useOpenStore((state) => state.OpenFiles);
 
   const folders = files.filter((file) => file.children);
