@@ -1,7 +1,6 @@
 "use client";
 import { Roboto } from "next/font/google";
 import "./globals.css";
-import { Menu } from "./components";
 import { NextFont } from "next/dist/compiled/@next/font";
 const font: NextFont = Roboto({ weight: "400", subsets: ["latin"] });
 
@@ -13,7 +12,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className + " bg-black text-white"}>
-        <Menu />
         {children}
       </body>
     </html>

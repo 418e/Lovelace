@@ -26,7 +26,7 @@ const Editor: React.FC = () => {
       <Context.Content>
         <Context.Item>Soon</Context.Item>
       </Context.Content>
-      <Context.Trigger className="dark">
+      <Context.Trigger className="dark w-full h-full">
         <MonacoEditor
           className="w-full h-full pt-2"
           theme="vs-dark"

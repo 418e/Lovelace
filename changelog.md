@@ -1,3 +1,7 @@
+### 0.7.1 March 13 2024
+
+- updated UI/Layout
+
 ### 0.7.0 March 13 2024
 
 - added file/folder creating

@@ -11,7 +11,7 @@ export default function Home(): React.ReactNode {
         <Sidebar.default />
       </Resize.ResizablePanel>
       <Resize.ResizableHandle />
-      <Resize.ResizablePanel defaultSize={80}>
+      <Resize.ResizablePanel defaultSize={80} className="w-full ">
         <Editor.default />
       </Resize.ResizablePanel>
     </Resize.ResizablePanelGroup>

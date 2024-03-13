@@ -13,13 +13,47 @@ export default function Sidebar() {
   const sortedFiles = [...folders, ...filesOnly];
 
   return (
-    <div className="w-full bg-zinc-900 overflow-y-auto h-[88vh]">
+    <div className="w-full bg-zinc-900 overflow-y-auto h-screen">
       <SidebarNav />
       {sortedFiles.map((file, index) => (
         <Fragment key={`file-${file.path}-${index}`}>
           <FileComponent file={file} depth={0} />
         </Fragment>
       ))}
+      <FileComponent
+        file={{
+          name: "Folder",
+          path: "",
+          children: [
+            {
+              path: "",
+              name: "child.txt",
+            },
+            {
+              path: "",
+              name: "child.html",
+            },
+            {
+              path: "",
+              name: "SubFolder",
+              children: [
+                {
+                  path: "",
+                  name: "child.rs",
+                },
+              ],
+            },
+          ],
+        }}
+        depth={0}
+      />
+      <FileComponent
+        file={{
+          path: "",
+          name: "child.rs",
+        }}
+        depth={0}
+      />
     </div>
   );
 }
