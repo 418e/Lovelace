@@ -2,17 +2,20 @@
   "build": {
     "beforeBuildCommand": "npm run build",
     "beforeDevCommand": "npm run dev",
-    "devPath": "http://localhost:3000",
-    "distDir": "/out"
+    "devPath": "http://localhost:5173/",
+    "distDir": "dist"
   },
   "package": {
     "productName": "lovelace",
-    "version": "0.7.0"
+    "version": "0.8.0"
   },
   "tauri": {
     "allowlist": {
       "all": true,
-      "dialog": { "open": true }
+      "dialog": { "open": true },
+      "fs": {
+        "scope": { "requireLiteralLeadingDot": false }
+      }
     },
     "bundle": {
       "active": true,
@@ -55,12 +58,12 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
-        "minHeight": 300,
+        "height": 800,
+        "minHeight": 400,
         "resizable": true,
         "title": "Lovelace",
-        "width": 800,
-        "minWidth": 400,
+        "width": 1200,
+        "minWidth": 1000,
         "theme": "Dark",
         "label": "Lovelace",
         "fileDropEnabled": true,

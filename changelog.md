@@ -1,3 +1,12 @@
+### 0.8.0 March 14 2024
+
+- switched from Next.js to vite
+- disabled sidebar resizability
+- added fs intednations (beta)
+- added fs actions
+- fixed files starting with "." not opening
+- fixed minor bugs
+
 ### 0.7.1 March 13 2024
 
 - updated UI/Layout
